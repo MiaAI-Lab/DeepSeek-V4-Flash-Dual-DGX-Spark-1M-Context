@@ -56,7 +56,7 @@ services:
         exec /usr/local/bin/dsv4-vllm-entrypoint serve deepseek-ai/DeepSeek-V4-Flash
         --served-model-name deepseek-v4-flash
         --host 0.0.0.0
-        --port 8888
+        --port 8000
         --trust-remote-code
         --tensor-parallel-size 2
         --pipeline-parallel-size 1
