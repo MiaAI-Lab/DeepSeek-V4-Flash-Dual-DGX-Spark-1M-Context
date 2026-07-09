@@ -1,5 +1,3 @@
-# THERE IS A, BETTER AND UPDADED RECIPE HERE ----> https://github.com/MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark
-
 # DeepSeek V4 Flash – Dual DGX Spark (1M Context)
 
 Deploy [DeepSeek-V4-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash) — a Mixture-of-Experts (MoE) reasoning model — across **two NVIDIA DGX Spark** nodes with **1 million token context length**, InfiniBand interconnect, and FP8 KV-cache.
@@ -56,7 +54,17 @@ cd DeepSeek-V4-Flash-Dual-DGX-Spark-1M-Context
 
 Run this on **both** spark1 (head) and spark2 (worker).
 
-### 2. Configure environment
+### 2. Download model weights on both nodes
+
+Pre-download the model weights into the HuggingFace cache so the container doesn't download them on first run:
+
+```bash
+hf download deepseek-ai/DeepSeek-V4-Flash
+```
+
+Run this on **both** spark1 (head) and spark2 (worker). This requires the `huggingface_hub` CLI (`pip install huggingface_hub`).
+
+### 3. Configure environment
 
 ```bash
 cp .env.example .env
@@ -86,7 +94,7 @@ Edit `.env` to match your cluster:
 > ```
 > Pick the interface with the link-local IP used for NCCL out-of-band communication.
 
-### 3. Set NODE_RANK on each node
+### 4. Set NODE_RANK on each node
 
 On **spark1** (head):
 ```bash
@@ -101,7 +109,7 @@ HEADLESS=1
 
 Update `.env` accordingly on each node.
 
-### 4. Start the server
+### 5. Start the server
 
 From **spark1** only:
 
@@ -114,7 +122,7 @@ This script:
 2. Starts the container on spark1
 3. Polls `http://127.0.0.1:8000/v1/models` until the API is ready (up to ~20 minutes)
 
-### 5. Stop the server
+### 6. Stop the server
 
 From **spark1** only:
 
