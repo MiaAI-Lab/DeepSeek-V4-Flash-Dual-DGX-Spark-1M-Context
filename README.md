@@ -1,3 +1,4 @@
+# OLD RECIPE - PLS USE THE NEW ONE HERE: https://github.com/MiaAI-Lab/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark
 # DeepSeek V4 Flash – Dual DGX Spark (1M Context)
 
 Deploy [DeepSeek-V4-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash) — a Mixture-of-Experts (MoE) reasoning model — across **two NVIDIA DGX Spark** nodes with **1 million token context length**, InfiniBand interconnect, and FP8 KV-cache.
